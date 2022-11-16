@@ -28,4 +28,6 @@ public class LoansDto {
     private int outstandingAmount;
 
     private String createDt;
+    
+    private Integer port;
 }
