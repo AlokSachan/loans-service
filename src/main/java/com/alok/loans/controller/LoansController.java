@@ -9,17 +9,16 @@ import com.alok.loans.service.LoansService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 public class LoansController {
 
     @Autowired
@@ -32,7 +31,9 @@ public class LoansController {
     private LoansServiceConfig loansServiceConfig;
 
     @GetMapping("/myLoans/{customerId}")
-    public ResponseEntity<List<LoansDto>> getLoansDetails(@PathVariable int customerId) {
+    public ResponseEntity<List<LoansDto>> getLoansDetails(@PathVariable int customerId,
+                                                          @RequestHeader("eazybank-correlation-id")  String correlationId) {
+        log.info("correlationId {}", correlationId);
         return new ResponseEntity<>(loansAdaptor.adapt(loansService.findByCustomerId(customerId)), HttpStatus.OK);
 
     }
