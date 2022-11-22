@@ -73,6 +73,17 @@
 <!--			<artifactId>spring-rabbit</artifactId>-->
 <!--		</dependency>-->
 
+		<dependency>
+			<groupId>io.microconfig</groupId>
+			<artifactId>microconfig-core</artifactId>
+			<version>4.9.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
